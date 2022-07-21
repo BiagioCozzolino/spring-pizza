@@ -16,32 +16,32 @@ import jana60.model.Pizza;
 import jana60.repository.PizzaRepository;
 
 @Controller
-@RequestMapping("/pizza")
+@RequestMapping("/")
 public class PizzaController {
 
 	@Autowired 
 	private PizzaRepository repo;
 	
-	@GetMapping
+	@GetMapping("/pizza")
 	public String pizza(Model model) {
 		List<Pizza> PizzaList = (List<Pizza>)repo.findAll();
 		model.addAttribute("PizzaList", PizzaList);
 		return "pizza";
 	}
 	
-	@GetMapping("/add")
+	@GetMapping("/edit")
 	  public String pizzaForm(Model model) {
 	    model.addAttribute("pizza", new Pizza());
-	    return "/pizza/edit";
+	    return "edit";
 	  }
 	
-	 @PostMapping("/add")
+	 @PostMapping("/edit")
 	  public String save(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult br) {
 	    if (br.hasErrors()) {
-	      return "/pizza/edit";
+	      return "edit";
 	    } else {
 	      repo.save(formPizza);
-	      return "redirect:/"; 
+	      return "redirect:/pizza"; 
 	    }
 	  }
 }

@@ -17,9 +17,4 @@ public class HomeController {
 		return "homePage";
 	}
 	
-	@GetMapping("/edit")
-	public String edit() {
-		
-		return "edit";
-	}
 }

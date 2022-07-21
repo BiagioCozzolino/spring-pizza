@@ -14,19 +14,19 @@
     	<form
   			id="form-pizza"
   			th:object="${pizza}"
-  			th:action="@{/add}"
+  			th:action="@{/edit}"
   			method="POST"
   		>
   		<div class="form-floating mb-3 mt-3">
-  <input type="text" class="form-control" id="nome" placeholder="Pizza Margherita">
+  <input type="text" class="form-control" th:field="*{nome}" id="nome" placeholder="Pizza Margherita">
   <label for="floatingInput">Nome Pizza</label>
 </div>
 <div class="form-floating mt-3">
-  <input type="text" class="form-control" id="descrizione"  placeholder="Descrizione">
+  <input type="text" class="form-control" th:field="*{descrizione}" id="descrizione"  placeholder="Descrizione">
   <label for="floatingPassword">Descrizione</label>
 </div>
 <div class="form-floating mt-3">
-  <input type="number" class="form-control" id="prezzo"  placeholder="Prezzo">
+  <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo"  placeholder="Prezzo">
   <label for="floatingPassword">Prezzo</label>
 </div>
 <div>
