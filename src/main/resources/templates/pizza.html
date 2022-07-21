@@ -10,10 +10,11 @@
     
     <div class="container">
     	<h1 class="text-center">Ecco la lista delle nostre bellissime pizze</h1>
-    	<div th:if="${#lists.isEmpty(DepartmentsList)}">
+    	<a class="btn btn-dark" th:href="@{/edit}">Aggiungi una nuova Pizza</a>
+    	<div th:if="${#lists.isEmpty(PizzaList)}">
         <h1>Mi dispiace ma la lista è vuota!</h1>
       </div>
-      <div th:unless="${#lists.isEmpty(DepartmentsList)}">
+      <div th:unless="${#lists.isEmpty(PizzaList)}">
         <table class="table">
           <thead>
             <tr>
@@ -23,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="p : ${DepartmentsList} ">
+            <tr th:each="p : ${PizzaList} ">
               <td class="table-success" th:text="${p.getNome()}"></td>
               <td class="table-danger" th:text="${p.getDescrizione()}"></td>
               <td class="table-warning" th:text="${p.getPrezzo()}"></td>

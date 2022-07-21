@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	
-	@GetMapping("/")
+	@GetMapping
 	public String homePage() {
 		
 		return "homePage";
+	}
+	
+	@GetMapping("/edit")
+	public String edit() {
+		
+		return "edit";
 	}
 }
