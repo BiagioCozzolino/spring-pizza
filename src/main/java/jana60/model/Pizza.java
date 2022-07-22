@@ -1,10 +1,16 @@
 package jana60.model;
 
+
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pizza")
@@ -14,12 +20,15 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotEmpty(message = "Questo campo non può essere vuoto")
+	@Column(unique = true)
 	private String nome;
-	
+	@NotEmpty(message = "Questo campo non può essere vuoto")
 	private String descrizione;
 	
+	@NotNull (message = "Devi scrivere il prezzo!")
+	  @Min(value = 1)
 	private float prezzo;
-	
 	
 	//Getter and Setters
 
