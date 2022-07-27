@@ -1,12 +1,13 @@
 package jana60.model;
 
-
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -19,18 +20,21 @@ public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@NotEmpty(message = "Questo campo non può essere vuoto")
 	@Column(unique = true)
 	private String nome;
 	@NotEmpty(message = "Questo campo non può essere vuoto")
 	private String descrizione;
-	
-	@NotNull (message = "Devi scrivere il prezzo!")
-	  @Min(value = 1)
+
+	@NotNull(message = "Devi scrivere il prezzo!")
+	@Min(value = 1)
 	private float prezzo;
-	
-	//Getter and Setters
+
+	@ManyToMany
+	List<Ingredienti> ingredienti;
+
+	// Getter and Setters
 
 	public Integer getId() {
 		return id;
@@ -63,8 +67,12 @@ public class Pizza {
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
-	
-	
-	
-	
+
+	public List<Ingredienti> getIngredienti() {
+		return ingredienti;
+	}
+
+	public void setIngredienti(List<Ingredienti> ingredienti) {
+		this.ingredienti = ingredienti;
+	}
 }
