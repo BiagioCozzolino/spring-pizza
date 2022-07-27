@@ -16,7 +16,7 @@
 				th:object="${newIngrediente}"
 				th:action="@{/ingredienti/edit}" 
 				method="POST">
-				
+				<input type="hidden" th:field="*{id}">
 				<div class="input-group mb-3 has-validation">
 					<input th:field="*{nome}" type="text" class="form-control"
 						placeholder="Aggiungi un ingrediente" aria-label="Aggiungi un ingrediente"

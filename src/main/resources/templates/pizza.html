@@ -21,7 +21,12 @@
     <hr>
     <p class="card-text" th:text="${p.getDescrizione()}"></p>
     <hr>
-    <a class="btn btn-primary d-block mb-3" title="Modifica" th:href="@{|/update/${p.getId()}|}" onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-pencil"></i></a>
+    <h3 >Ingredienti</h3>
+    <ul>
+	  					<li th:each="in : ${p.ingredienti}" th:text="${in.nome}"></li>
+	  				</ul>
+    <hr>
+    <a class="btn btn-primary d-block mb-3" title="Modifica" th:href="@{|/edit/${p.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
     <a class="btn btn-primary d-block mb-3" width:"100%" title="Cancella" th:href="@{|/delete/${p.getId()}|}" onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
     
   </div>

@@ -24,11 +24,15 @@
           <thead>
             <tr>
               <th scope="col" class="table-dark">Nome ingrediente</th>
+              <th scope="col" class="table-dark">Azione</th>
             </tr>
           </thead>
           <tbody>
             <tr th:each="ing : ${IngredientiList} ">
               <td class="table-success" th:text="${ing.getNome()}"></td>
+              <td class="table-info">
+              <a class="btn btn-primary d-block mb-3" title="Modifica" th:href="@{|/ingredienti/update/${ing.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
+              </td>
             </tr>
           </tbody>
         </table>

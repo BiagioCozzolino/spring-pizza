@@ -18,7 +18,7 @@ public class Ingredienti {
 	private String nome;
 
 	@ManyToMany(mappedBy = "ingredienti")
-	List<Pizza> pizze;
+	List<Pizza> pizza;
 
 	// Getter and Setters
 	public Integer getId() {

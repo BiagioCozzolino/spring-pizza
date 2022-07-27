@@ -77,7 +77,7 @@ public class PizzaController {
 
 	// Eliminare dati
 	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable("id") Integer pizzaId, RedirectAttributes ra) {
+	public String delete(@PathVariable("id") Integer pizzaId, RedirectAttributes ra, Model model) {
 		Optional<Pizza> result = repo.findById(pizzaId);
 		if (result.isPresent()) {
 			repo.delete(result.get());
@@ -90,13 +90,14 @@ public class PizzaController {
 
 	}
 
-	@GetMapping("/update/{id}")
+	@GetMapping("/edit/{id}")
 	public String update(@PathVariable("id") Integer pizzaId, Model model) {
 		Optional<Pizza> result = repo.findById(pizzaId);
 		if (result.isPresent()) {
 			model.addAttribute("pizza", result.get());
+			model.addAttribute("ingredienti", repo2.findAllByOrderByNome());
 			repo.save(result.get());
-			return "edit";
+			return "/edit";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza con id " + pizzaId + "Non esiste");
 		}
