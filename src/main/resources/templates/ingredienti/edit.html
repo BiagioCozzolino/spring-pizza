@@ -11,54 +11,25 @@
     <div class="container">
     	<h1 class="text-center">Inserisci un nuovo Ingrediente:</h1>
     	
-    	<form
-  			id="form-pizza"
-  			th:object="${pizza}"
-  			th:action="@{/edit}"
-  			method="POST"
-  		>
-  		<input type="hidden" th:field="*{id}">
-  		<div class="form-floating mb-3 mt-3 has-validation">
-  <input type="text" class="form-control" th:field="*{nome}" id="nome" th:errorClass="is-invalid" placeholder="Pizza Margherita">
-  <label for="floatingInput">Nome Pizza</label>
-        <div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
-  					<ul>
-  						<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
-  					</ul>
-  				</div>
-      
-</div>
-
-<div class="form-floating mt-3 has-validation">
-  <input type="text" class="form-control" th:field="*{descrizione}" id="descrizione" th:errorClass="is-invalid" placeholder="Descrizione">
-  <label for="floatingPassword">Descrizione</label>
-  <div th:if="${#fields.hasErrors('descrizione')}" class="invalid-feedback">
-  					<ul>
-  						<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}">
-  					</ul>
-  				</div>
-</div>
-<div class="form-floating mt-3 has-validation">
-  <input type="number" class="form-control" th:field="*{prezzo}" id="prezzo" th:errorClass="is-invalid" placeholder="Prezzo">
-  <label for="floatingPassword">Prezzo</label>
-  <div th:if="${#fields.hasErrors('prezzo')}" class="invalid-feedback">
-  					<ul>
-  						<li th:each="err : ${#fields.errors('prezzo')}" th:text="${err}">
-  					</ul>
-  				</div>
-
-<div>
-  				<button type="submit" class="btn btn-primary mt-3">Save</button>
-  				<a class="btn btn-primary mt-3" href="/">Cancel</a>
-  			</div>
-    	<div class="col-4">
-				<h4>Ingredienti</h4>
-				<div class="form-check" th:each="ing : ${listaIngredienti}">
-				  <input class="form-check-input" th:field="*{ingredienti}" type="checkbox" th:id="|ingredienti_${ing.id}|" th:value="${ing.id}">
-				  <label class="form-check-label" th:for="|ingredienti_${ing.id}|" th:text="${ing.name}"></label>
+    	<form 
+				id="form-ingrediente" 
+				th:object="${newIngrediente}"
+				th:action="@{/ingredienti/edit}" 
+				method="POST">
+				
+				<div class="input-group mb-3 has-validation">
+					<input th:field="*{nome}" type="text" class="form-control"
+						placeholder="Aggiungi un ingrediente" aria-label="Aggiungi un ingrediente"
+						aria-describedby="ingrediente-button" th:errorClass="is-invalid">
+					<button class="btn btn-primary" type="submit" id="category-button">Salva</button>
+					<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
+						<ul>
+							<li th:each="err : ${#fields.errors('nome')}" th:text="${err}">
+						</ul>
+					</div>		
 				</div>
-    	
-    	</form>
+				
+			</form>
     </div>
     
     <div th:replace="fragment :: footer"> </div>
