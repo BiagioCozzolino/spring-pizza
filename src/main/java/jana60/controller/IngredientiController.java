@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jana60.model.Ingredienti;
 import jana60.repository.IngredientiRepository;
@@ -63,6 +64,21 @@ public class IngredientiController {
 			model.addAttribute("newIngrediente", result.get());
 			repo.save(result.get());
 			return "ingredienti/edit";
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					"Ingrediente con id " + ingredienteId + "Non esiste");
+		}
+
+	}
+
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Integer ingredienteId, RedirectAttributes ra, Model model) {
+		Optional<Ingredienti> result = repo.findById(ingredienteId);
+		if (result.isPresent()) {
+			repo.delete(result.get());
+			ra.addFlashAttribute("successMessage",
+					"L'ingrediente" + result.get().getNome() + "è stato cancellato con successo!");
+			return "redirect:/ingredienti/list";
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 					"Ingrediente con id " + ingredienteId + "Non esiste");

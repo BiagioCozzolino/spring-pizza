@@ -10,7 +10,7 @@
     <div class="container">
     
     	
-    	    	<a class="btn btn-dark mb-5" th:href="@{/edit}">Aggiungi una nuova Pizza</a>
+    	    	<a class="btn btn-dark my-5" th:href="@{/edit}">Aggiungi una nuova Pizza</a>
   <div class="row justify-content-md-center">
     	<div class="card col-3 m-4 " th:each="p : ${PizzaList} ">
   <img src="img/pizzacard1.jpg" class="card-img-top" alt="pizza">
@@ -26,8 +26,8 @@
 	  					<li th:each="in : ${p.ingredienti}" th:text="${in.nome}"></li>
 	  				</ul>
     <hr>
-    <a class="btn btn-primary d-block mb-3" title="Modifica" th:href="@{|/edit/${p.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
-    <a class="btn btn-primary d-block mb-3" width:"100%" title="Cancella" th:href="@{|/delete/${p.getId()}|}" onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
+    <a class="btn btn-dark d-block mb-3" title="Modifica" th:href="@{|/edit/${p.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
+    <a class="btn btn-danger d-block mb-3" width:"100%" title="Cancella" th:href="@{|/delete/${p.getId()}|}" onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
     
   </div>
 </div>

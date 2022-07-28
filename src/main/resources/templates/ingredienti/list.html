@@ -31,7 +31,8 @@
             <tr th:each="ing : ${IngredientiList} ">
               <td class="table-success" th:text="${ing.getNome()}"></td>
               <td class="table-info">
-              <a class="btn btn-primary d-block mb-3" title="Modifica" th:href="@{|/ingredienti/update/${ing.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
+              <a class="btn btn-dark d-block mb-3" title="Modifica" th:href="@{|/ingredienti/update/${ing.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
+              <a class="btn btn-danger d-block mb-3" width:"100%" title="Cancella" th:href="@{|/ingredienti/delete/${ing.getId()}|}" onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
               </td>
             </tr>
           </tbody>
