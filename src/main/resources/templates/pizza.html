@@ -13,9 +13,15 @@
     	    	<a class="btn btn-dark my-5" th:href="@{/edit}">Aggiungi una nuova Pizza</a>
   <div class="row justify-content-md-center">
     	<div class="card col-3 m-4 " th:each="p : ${PizzaList} ">
-  <img src="img/pizzacard1.jpg" class="card-img-top" alt="pizza">
+  <img th:if="${p.immagini.size() == 0}" src="img/pizzacard1.jpg" class="card-img-top" alt="pizza">
+   <div th:each="img : ${p.immagini} ">
+   	<img th:src="@{|/immagini/${img.id}/content|}" class="img-fluid image-container" alt="">
+
+   </div>
   <div class="card-body">
+  
     <h2 class="card-title text-center" th:text="${p.nome}"></h2>
+  
     <hr>
     <h4 class="card-title text-center" th:text="'Prezzo: ' + ${p.getPrezzo} + '€'"></h4>
     <hr>
@@ -26,6 +32,8 @@
 	  					<li th:each="in : ${p.ingredienti}" th:text="${in.nome}"></li>
 	  				</ul>
     <hr>
+    <h3 class="text-center mb-3">Azioni</h3>
+    <a class="btn btn-warning d-block mb-3" title="Inserisci immagine"th:href="@{|/immagini/list/${p.getId()}|}"><i class="fa-solid fa-image"></i></a>
     <a class="btn btn-dark d-block mb-3" title="Modifica" th:href="@{|/edit/${p.getId()}|}"><i class="fa-solid fa-pencil"></i></a>
     <a class="btn btn-danger d-block mb-3" width:"100%" title="Cancella" th:href="@{|/delete/${p.getId()}|}" onclick="return confirm('Sei sicuro?') "><i class="fa-solid fa-trash-can"></i></a>
     

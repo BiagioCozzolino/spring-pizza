@@ -26,10 +26,7 @@
           <a class="nav-link" th:classAppend="${current == 'ingredienti'} ? active : not-active" href="/ingredienti/list">I nostri ingredienti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:classAppend="${current == 'degrees'} ? active : not-active" href="/pizza">Lavora con noi!</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:classAppend="${current == 'teachers'} ? active : not-active" href="/">Contatti</a>
+          <a class="nav-link" th:classAppend="${current == 'contatti'} ? active : not-active" href="/">Contatti</a>
         </li>
       </ul>
       <form class="d-flex" action="/search">

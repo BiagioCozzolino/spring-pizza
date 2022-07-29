@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -32,9 +34,15 @@ public class Pizza {
 	@Min(value = 1)
 	private float prezzo;
 
+	@Lob
+	private byte[] immagine;
+
 	@ManyToMany
 	@JoinTable
 	List<Ingredienti> ingredienti;
+
+	@OneToMany(mappedBy = "pizza")
+	private List<Immagine> immagini;
 
 	// Getter and Setters
 
@@ -77,4 +85,21 @@ public class Pizza {
 	public void setIngredienti(List<Ingredienti> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
+
+	public byte[] getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(byte[] immagine) {
+		this.immagine = immagine;
+	}
+
+	public List<Immagine> getImmagini() {
+		return immagini;
+	}
+
+	public void setImmagini(List<Immagine> immagini) {
+		this.immagini = immagini;
+	}
+
 }
