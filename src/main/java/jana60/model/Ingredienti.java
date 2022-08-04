@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Ingredienti {
 
@@ -17,6 +19,7 @@ public class Ingredienti {
 
 	private String nome;
 
+	@JsonBackReference
 	@ManyToMany(mappedBy = "ingredienti")
 	List<Pizza> pizza;
 
